@@ -1,6 +1,6 @@
 # Cloud cost monitoring dashboard
 
-Next.js app that pulls **AWS Cost Explorer** (last ~30 days by service + daily series), **Azure Cost Management** (subscription scope, by service), and **GCP Recommender** idle VM hints. Includes a simple **daily spend anomaly** heuristic for AWS (not a replacement for AWS Cost Anomaly Detection).
+A Next.js app that pulls **AWS Cost Explorer** (last ~30 days by service + daily series), **Azure Cost Management** (subscription scope, by service), and **GCP Recommender** idle VM hints. Includes a simple **daily spend anomaly** heuristic for AWS (not a replacement for AWS Cost Anomaly Detection).
 
 ## Prerequisites
 
