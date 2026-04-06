@@ -1,53 +1,53 @@
-# Cloud cost monitoring dashboard
+# Cloud Cost Dashboard
 
-A Next.js app that pulls **AWS Cost Explorer** (last ~30 days by service + daily series), **Azure Cost Management** (subscription scope, by service), and **GCP Recommender** idle VM hints. Includes a simple **daily spend anomaly** heuristic for AWS (not a replacement for AWS Cost Anomaly Detection).
+A multi-cloud cost monitoring and analysis platform designed to provide visibility into cloud spend, detect anomalies, and support cost optimisation across AWS, Azure, and GCP environments.
 
-## Prerequisites
+## Overview
 
-- Node **22+**
-- Cloud IAM permissions (see below)
+The Cloud Cost Dashboard aggregates and analyses usage data across multiple cloud providers to help teams understand where costs are coming from, identify unusual spending patterns, and make informed operational decisions.
 
-## Quick start
+It reflects real-world IT Operations and FinOps practices, where cost visibility, governance, and optimisation are critical to maintaining efficient and scalable infrastructure.
 
-```bash
-cd cloud-cost-dashboard
-npm install
-cp .env.example .env.local
-# Fill .env.local; authenticate each cloud you enable
-npm run dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000). Use **Refresh** to re-query APIs.
+- Multi-cloud cost aggregation (AWS, Azure, GCP).
+- Cost breakdown by service, provider, and usage patterns.
+- Anomaly detection for unexpected spikes in spend.
+- Historical cost tracking and trend analysis.
+- Extensible architecture for integrating additional cloud services.
 
-## IAM / permissions
+## Operational Value
 
-### AWS
+- Provides clear visibility into cloud expenditure across environments.
+- Enables early detection of cost anomalies and potential misconfigurations.
+- Supports cost optimisation and resource efficiency initiatives.
+- Assists with budgeting, forecasting, and financial governance.
+- Bridges the gap between engineering usage and financial accountability (FinOps).
 
-- Enable **Cost Explorer** in the billing console (once per payer account).
-- IAM policy must allow `ce:GetCostAndUsage` (e.g. `AWSBillingReadOnlyAccess` or a custom statement).
-- Credentials: `AWS_PROFILE`, instance role, or env keys. The app calls Cost Explorer in **`us-east-1`** (API requirement).
+## Use Cases
 
-### Azure
+- Monitoring and managing cloud spend across multiple providers.
+- Identifying cost leaks or inefficient resource usage.
+- Supporting FinOps and cost governance practices.
+- Providing dashboards for operational and leadership reporting.
 
-- Set `AZURE_SUBSCRIPTION_ID`.
-- Use [DefaultAzureCredential](https://learn.microsoft.com/en-us/javascript/api/overview/azure/identity-readme): service principal env vars, managed identity, or `az login` for local dev.
-- Role: **Cost Management Reader** (or broader) on the subscription.
+## Tech Stack
 
-### GCP
+- TypeScript.
+- Node.js / Next.js.
+- Cloud provider APIs (AWS, Azure, GCP).
+- Data aggregation and visualisation.
 
-- Set `GCP_PROJECT_ID`.
-- [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc): `gcloud auth application-default login` or `GOOGLE_APPLICATION_CREDENTIALS`.
-- Role: **Recommender Viewer** or **Viewer** on the project (for idle VM recommender). Billing **cost totals** are not queried here; extend the app with Billing Export to BigQuery if you need GCP spend charts.
+## Future Improvements
 
-## Production
+- Real-time cost alerting (Slack, email).
+- Budget threshold notifications.
+- Role-based dashboards for teams and stakeholders.
+- Integration with billing exports and cost management tools.
+- Automated recommendations for cost optimisation.
 
-```bash
-npm run build
-npm run start
-```
+---
 
-Run behind your org’s auth (VPN, OAuth proxy, or private network). **Do not** expose this app publicly without protecting it—API routes use your cloud credentials.
+## Why This Project Matters
 
-## Suggested GitHub name
-
-`Cloud-Cost-Dashboard` or align with your naming standard.
+As organisations scale in the cloud, cost management becomes a critical operational concern. This project focuses on improving financial visibility and accountability in cloud environments, aligning with modern FinOps practices and helping teams operate more efficiently at scale.
